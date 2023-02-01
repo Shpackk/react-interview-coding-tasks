@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .notes-wrapper {
@@ -11,13 +13,67 @@
 }
 
 .note-card {
-  border: 1px dashed white;
+  /* background-color: rgb(9, 37, 41); */
+  background-color: rgb(31, 29, 29);
   text-align: center;
   padding-bottom: 20px;
+}
+
+.comment-time {
+  display: flex;
+  justify-content: space-between;
+}
+
+.notes-divider {
+  background-color: #242424;
+  width: 100vw;
+  height: 1rem;
 }
 
 .comments-div {
   background-color: darkslategrey;
   text-align: left;
   padding-left: 20px;
+}
+
+.edit-note-button {
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  background-color: rgb(125, 153, 74);
+  margin-right: 10px;
+  border: 0.09rem solid rgb(125, 153, 74);
+}
+
+.edit-note-button:hover {
+  border-color: rgb(164, 192, 113);
+  background-color: rgb(152, 177, 106);
+  box-shadow: 0 0 5px 0 hsl(76, 68%, 55%);
+}
+
+.edit-note-button:active {
+  background-color: rgb(152, 177, 106);
+  box-shadow: 0 0 5px 0 hsl(76, 72%, 45%);
+}
+
+.delete-note-button {
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  background-color: rgb(187, 98, 98);
+  margin-right: 10px;
+  border: 0.09rem solid rgb(187, 98, 98);
+}
+
+.delete-note-button:hover {
+  border-color: rgb(216, 100, 100);
+  background-color: rgb(224, 90, 12);
+  box-shadow: 0 0 5px 0 hsl(32, 82%, 63%);
+}
+
+.delete-note-button:active {
+  background-color: rgb(241, 91, 3);
+  box-shadow: 0 0 5px 0 hsl(32, 82%, 52%);
 }

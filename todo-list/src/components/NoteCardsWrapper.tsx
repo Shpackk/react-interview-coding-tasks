@@ -9,8 +9,15 @@ export const NoteCardsWrapper = () => {
   return (
     <div className="notes-wrapper">
       {state.map((note, index) => (
-        <NoteCard index={index} note={note} />
+        <>
+          <NoteCard index={index} note={note} />
+          <Divider />
+        </>
       ))}
     </div>
   );
+};
+
+const Divider = () => {
+  return <div className="notes-divider"></div>;
 };

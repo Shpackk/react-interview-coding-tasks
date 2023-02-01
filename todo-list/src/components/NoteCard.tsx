@@ -27,8 +27,12 @@ export const NoteCard = (props: NoteProps) => {
       ) : (
         <>
           <p key={note.id}> {note.value} </p>
-          <button onClick={handleDelete}>Delete</button>
-          <button onClick={toggleEdit}> Edit </button>
+          <button className="btn delete-note-button" onClick={handleDelete}>
+            Delete
+          </button>
+          <button className="btn edit-note-button" onClick={toggleEdit}>
+            Edit
+          </button>
         </>
       )}
       <CommentsSection id={note.id} comments={note.comments} />

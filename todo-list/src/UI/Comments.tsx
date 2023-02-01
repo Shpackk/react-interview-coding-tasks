@@ -8,8 +8,11 @@ export const Comments = (props: CommentsProp) => {
   return (
     <div className="comments-div">
       <h4>Comments</h4>
-      {comments.map((comment) => (
-        <p>{comment}</p>
+      {comments.map(({ value, created_at }) => (
+        <div className="comment-time">
+          <span>{value}</span>
+          <span>{created_at}</span>
+        </div>
       ))}
     </div>
   );

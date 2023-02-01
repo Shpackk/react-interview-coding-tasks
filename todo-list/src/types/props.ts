@@ -1,4 +1,4 @@
-import type { Note } from './types';
+import type { Comment, Note } from './types';
 
 export type NoteProps = {
   index: number;
@@ -6,7 +6,7 @@ export type NoteProps = {
 };
 
 export type CommentsProp = {
-  comments: string[];
+  comments: Comment[];
 };
 
 export type SubmitButtonProps = {

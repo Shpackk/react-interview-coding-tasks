@@ -1,7 +1,12 @@
 export type Note = {
   value: string;
-  comments: string[];
+  comments: Comment[];
   id: number;
+};
+
+export type Comment = {
+  value: string;
+  created_at: string;
 };
 
 export enum Actions {

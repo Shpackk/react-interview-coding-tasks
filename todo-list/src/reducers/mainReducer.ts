@@ -9,7 +9,13 @@ export const reducer = (state: Note[], action: reducerAction) => {
       return state.map((note) => {
         if (note.id === id) {
           return {
-            comments: [...note.comments, value],
+            comments: [
+              ...note.comments,
+              {
+                value: value,
+                created_at: new Date().toLocaleTimeString(),
+              },
+            ],
             value: note.value,
             id: note.id,
           };
@@ -38,13 +44,14 @@ export const reducer = (state: Note[], action: reducerAction) => {
 
     case 'addNote':
       if (value) {
-        const newNote: Note = {
-          id: Date.now(),
-          value,
-          comments: [],
-        };
-
-        return [...state, newNote];
+        return [
+          ...state,
+          {
+            id: Date.now(),
+            value,
+            comments: [],
+          },
+        ];
       }
       return state;
 
