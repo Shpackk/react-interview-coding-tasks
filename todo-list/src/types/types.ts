@@ -1,6 +1,7 @@
 export type Note = {
   value: string;
   comments: string[];
+  id: number;
 };
 
 export enum Actions {
@@ -13,8 +14,8 @@ export enum Actions {
 export type reducerAction = {
   type: Actions;
   payload: {
-    index?: number;
-    value?: string;
+    id: number;
+    value: string;
   };
 };
 

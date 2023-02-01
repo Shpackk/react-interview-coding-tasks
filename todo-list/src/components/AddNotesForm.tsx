@@ -1,12 +1,13 @@
-import { useState, useRef, createContext } from 'react';
-import type { FormProps } from '../types/props';
+import { useState, useRef, useContext } from 'react';
+import { NotesContext } from '../Context/notesContext';
 import { Actions } from '../types/types';
 import { SubmitButton } from '../UI/SubmitButton';
+import './AddNotes.css';
 
-export const AddNotesForm = (props: FormProps) => {
+export const AddNotesForm = () => {
   const [input, setInput] = useState('');
+  const { dispatch } = useContext(NotesContext);
   const formRef = useRef<HTMLFormElement>(null);
-  const { dispatch } = props;
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInput(e.target.value);
@@ -20,6 +21,7 @@ export const AddNotesForm = (props: FormProps) => {
       type: Actions.addNote,
       payload: {
         value: input,
+        id: 0,
       },
     });
 
@@ -29,7 +31,7 @@ export const AddNotesForm = (props: FormProps) => {
 
   return (
     <form onSubmit={handleSubmit} ref={formRef}>
-      <input type="text" onChange={handleInput} />
+      <input className="add-note-inpt" type="text" onChange={handleInput} />
       <SubmitButton label="Post" />
     </form>
   );

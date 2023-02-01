@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import type { EditProps } from '../types/props';
+import { useContext, useState } from 'react';
+import { NotesContext } from '../Context/notesContext';
 import { Actions } from '../types/types';
 import { SubmitButton } from '../UI/SubmitButton';
+import type { EditProps } from '../types/props';
 
 export const EditNoteForm = (props: EditProps) => {
-  const { dispatch, index, setEditing, oldNote } = props;
+  const { id, setEditing, oldNote } = props;
+  const { dispatch } = useContext(NotesContext);
   const [value, setValue] = useState(oldNote);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -14,7 +16,7 @@ export const EditNoteForm = (props: EditProps) => {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({ type: Actions.changeNote, payload: { index, value } });
+        dispatch({ type: Actions.changeNote, payload: { id, value } });
         setEditing(false);
       }}
     >

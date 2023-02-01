@@ -1,14 +1,15 @@
+import { useContext } from 'react';
 import '../App.css';
-import type { NotesWrapperProps } from '../types/props';
+import { NotesContext } from '../Context/notesContext';
 import { NoteCard } from './NoteCard';
 
-export const NoteCardsWrapper = (props: NotesWrapperProps) => {
-  const { state, dispatch } = props;
+export const NoteCardsWrapper = () => {
+  const { state } = useContext(NotesContext);
 
   return (
     <div className="notes-wrapper">
       {state.map((note, index) => (
-        <NoteCard dispatch={dispatch} index={index} note={note} />
+        <NoteCard index={index} note={note} />
       ))}
     </div>
   );

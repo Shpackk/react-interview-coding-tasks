@@ -1,19 +1,19 @@
-import { useReducer, useState } from 'react';
-import './App.css';
+import { useReducer } from 'react';
 import { AddNotesForm } from './components/AddNotesForm';
 import { NoteCardsWrapper } from './components/NoteCardsWrapper';
+import { NotesContext } from './Context/notesContext';
 import { reducer } from './reducers/mainReducer';
-import { Note } from './types/types';
-
-const initialState: Note[] = [];
+import './App.css';
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, []);
 
   return (
     <div className="App">
-      <AddNotesForm dispatch={dispatch} />
-      <NoteCardsWrapper state={state} dispatch={dispatch} />
+      <NotesContext.Provider value={{ state, dispatch }}>
+        <AddNotesForm />
+        <NoteCardsWrapper />
+      </NotesContext.Provider>
     </div>
   );
 }
