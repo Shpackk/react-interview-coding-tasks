@@ -21,6 +21,7 @@ export const NoteCard = (props: NoteProps) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (value === '') return;
     dispatch({ type: Actions.addComment, payload: { index, value } });
     setValue('');
     formRef.current?.reset();

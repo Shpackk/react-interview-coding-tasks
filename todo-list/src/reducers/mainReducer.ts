@@ -1,54 +1,50 @@
-import {
-  ChangeNote,
-  DeleteNote,
-  NewComment,
-  NewNote,
-  Note,
-  reducerAction,
-} from '../types/types';
+import { Note, reducerAction } from '../types/types';
 
 export const reducer = (state: Note[], action: reducerAction) => {
-  return notesReducerActions[action.type]
-    ? notesReducerActions[action.type](state, action.payload)
-    : state;
-};
+  const { type, payload } = action;
+  const { index, value } = payload;
 
-const notesReducerActions = {
-  addComment(prevNotes: Note[], payload: NewComment) {
-    if (payload.value === '') return prevNotes;
+  switch (type) {
+    case 'addComment':
+      return state.map((note, noteIndex) => {
+        if (noteIndex === index) {
+          return {
+            comments: [...note.comments, value],
+            value: note.value,
+          };
+        }
+        return note;
+      });
 
-    return prevNotes.map((note, index) => {
-      if (index === payload.index) {
-        return {
-          comments: [...note.comments, payload.value],
-          value: note.value,
-        };
+    case 'deleteNote':
+      return state.reduce((result: Note[], note, noteIndex) => {
+        if (noteIndex !== index) {
+          result.push(note);
+        }
+        return result;
+      }, []);
+
+    case 'changeNote':
+      const newState = [...state];
+      if (index && value) {
+        newState[index].value = value;
+        return newState;
       }
-      return note;
-    });
-  },
+      return state;
 
-  deleteNote(prevNotes: Note[], payload: DeleteNote) {
-    return prevNotes.reduce((result: Note[], note, index) => {
-      if (index !== payload.index) {
-        result.push(note);
-      }
-      return result;
-    }, []);
-  },
+    case 'addNote':
+      return [
+        ...state,
+        {
+          value,
+          comments: [],
+        },
+      ];
 
-  changeNote(prevNotes: Note[], payload: ChangeNote) {
-    return prevNotes.map((note, index) => {
-      if (index === payload.index) {
-        return {
-          comments: note.comments,
-          value: payload.value,
-        };
-      }
-      return note;
-    });
-  },
-  addNote(prevNotes: Note[], payload: NewNote) {
-    return [...prevNotes, payload.note];
-  },
+    default:
+      console.warn(
+        `${action.type} method is not defined on ${reducer.name} reducer`,
+      );
+      return state;
+  }
 };

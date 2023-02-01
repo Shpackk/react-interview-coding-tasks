@@ -5,20 +5,20 @@ import { SubmitButton } from '../UI/SubmitButton';
 
 export const EditNoteForm = (props: EditProps) => {
   const { dispatch, index, setEditing, oldNote } = props;
-  const [input, setInput] = useState(oldNote);
+  const [value, setValue] = useState(oldNote);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setInput(e.target.value);
+    setValue(e.target.value);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({ type: Actions.changeNote, payload: { index, input } });
+        dispatch({ type: Actions.changeNote, payload: { index, value } });
         setEditing(false);
       }}
     >
-      <input type="text" value={input} onChange={handleChange} />
+      <input type="text" value={value} onChange={handleChange} />
       <SubmitButton label="confirm" />
     </form>
   );

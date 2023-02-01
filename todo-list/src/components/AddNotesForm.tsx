@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState, useRef, createContext } from 'react';
 import type { FormProps } from '../types/props';
 import { Actions } from '../types/types';
 import { SubmitButton } from '../UI/SubmitButton';
 
 export const AddNotesForm = (props: FormProps) => {
   const [input, setInput] = useState('');
-  const formRef = React.useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const { dispatch } = props;
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -19,12 +19,11 @@ export const AddNotesForm = (props: FormProps) => {
     dispatch({
       type: Actions.addNote,
       payload: {
-        note: {
-          value: input,
-          comments: [],
-        },
+        value: input,
       },
     });
+
+    setInput('');
     formRef.current?.reset();
   };
 

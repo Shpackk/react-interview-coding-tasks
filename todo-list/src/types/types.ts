@@ -12,7 +12,10 @@ export enum Actions {
 
 export type reducerAction = {
   type: Actions;
-  payload: any;
+  payload: {
+    index?: number;
+    value?: string;
+  };
 };
 
 export type NewComment = {
